@@ -1,0 +1,86 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8">
+			<h2 class="section-headline">
+				<span>Book List</span>
+			</h2>
+		</div>
+		<div class="col-xs-4">
+			<img src="../../../assets/image/logo.png" class="img-responsive right" style="width:400px;z-index:1;" />
+		</div>
+		<img src="../../../assets/image/wood.png" class="img-responsive right" style="position:absolute;margin-top:90px;z-index:-2;" />
+	</div>
+
+	<hr style="position:absolute;width:85%;height:6px;background-color:#333;z-index:-1;margin-top:-170px;" />
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-9">
+			<!-- <div class="form-group"> -->
+				<!-- <input type="text" class="form-control" (keyup)="applyFilter($event.target.value)" placeholder="Filter"/> -->
+			<!-- </div> -->
+			<!-- <div class="row" style="margin-bottom:30px;" *ngFor="let book of filteredBookList"> -->
+				<!-- <div class="col-md-3"> -->
+					<!-- <a (click)="onSelect(book)" style="cursor:pointer;"> -->
+						<!-- <img class="img-responsive" src="{{serverPath}}/image/book/{{book.bookId}}.png"> -->
+					<!-- </a> -->
+				<!-- </div> -->
+				<!-- <div class="col-md-9"> -->
+					<!-- <h4 (click)="onSelect(book)" style="margin-top:20px;cursor:pointer;">{{book.title}}</h4> -->
+					<!-- <span>{{book.publicationDate}}</span> -->
+					<!-- <p>{{book.author}}</p> -->
+					<!-- <a (click)="onSelect(book)" style="cursor:pointer;"> -->
+						<!-- <span>{{book.format | uppercase}}</span> -->
+					<!-- </a> -->
+					<!-- <span>{{book.numberOfPages}} pages</span> -->
+					<!-- <br /> -->
+					<!-- <a (click)="onSelect(book)"> -->
+						<!-- <span style="font-size:x-large;color:#db3208;">$<span>{{book.ourPrice | number : '1.2-2'}}</span></span> -->
+					<!-- </a> -->
+					<!-- <span style="text-decoration:line-through;">$<span>{{book.listPrice | number : '1.2-2'}}</span></span> -->
+					<!-- <p>{{book.description | slice:0:500}}</p> -->
+				<!-- </div> -->
+			<!-- </div> -->
+			<!-- <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [length]="length" (page)="onPageEvent($event)"> -->
+			<!-- </mat-paginator> -->
+			<!-- <div *ngIf="pageEvent"> -->
+				<!-- <h5>Page Change Event Properties</h5> -->
+				<!-- <div>List length: {{pageEvent.length}}</div> -->
+				<!-- <div>Page size: {{pageEvent.pageSize}}</div> -->
+				<!-- <div>Page index: {{pageEvent.pageIndex}}</div> -->
+			<!-- </div> -->
+			<!-- <hr /> -->
+			<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style = "width:85%;">
+				<thead>
+					<tr hidden="hidden">
+					  <th>Image</th>
+					  <th>Book</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let book of bookList">
+						<td class="col-md-3">
+							<a (click)="onSelect(book)" style="cursor:pointer;">
+								<img class="img-responsive" src="{{serverPath}}/image/book/{{book.bookId}}.png">
+							</a>
+						</td>
+						<td>
+							<h4 (click)="onSelect(book)" style="margin-top:20px;cursor:pointer;">{{book.title}}</h4>
+							<span>{{book.publicationDate | date:"yyyy-MM-dd"}}</span>
+							<p>{{book.author}}</p>
+							<a (click)="onSelect(book)" style="cursor:pointer;">
+								<span>{{book.format | uppercase}}</span>
+							</a>
+							<span>{{book.numberOfPages}} pages</span>
+							<br />
+							<a (click)="onSelect(book)">
+								<span style="font-size:x-large;color:#db3208;">$<span>{{book.ourPrice | number : '1.2-2'}}</span></span>
+							</a>
+							<span style="text-decoration:line-through;">$<span>{{book.listPrice | number : '1.2-2'}}</span></span>
+							<p>{{book.description | slice:0:500}}</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,126 @@
+package com.bookstore.domain;
+
+import com.bookstore.domain.security.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+public class UserShipping implements Serializable {
+    private static final long serialVersionUID = -499296641320331944L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String userShippingName;
+    private String userShippingStreet1;
+    private String userShippingStreet2;
+    private String userShippingCity;
+    private String userShippingState;
+    private String userShippingCountry;
+    private String userShippingZipcode;
+    private boolean defaultShipping;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
+    @OneToMany(mappedBy = "shippingAddress", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Order> usedByOrderList = new ArrayList<>();
+
+    public UserShipping() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserShippingName() {
+        return userShippingName;
+    }
+
+    public void setUserShippingName(String userShippingName) {
+        this.userShippingName = userShippingName;
+    }
+
+    public String getUserShippingStreet1() {
+        return userShippingStreet1;
+    }
+
+    public void setUserShippingStreet1(String userShippingStreet1) {
+        this.userShippingStreet1 = userShippingStreet1;
+    }
+
+    public String getUserShippingStreet2() {
+        return userShippingStreet2;
+    }
+
+    public void setUserShippingStreet2(String userShippingStreet2) {
+        this.userShippingStreet2 = userShippingStreet2;
+    }
+
+    public String getUserShippingCity() {
+        return userShippingCity;
+    }
+
+    public void setUserShippingCity(String userShippingCity) {
+        this.userShippingCity = userShippingCity;
+    }
+
+    public String getUserShippingState() {
+        return userShippingState;
+    }
+
+    public void setUserShippingState(String userShippingState) {
+        this.userShippingState = userShippingState;
+    }
+
+    public String getUserShippingCountry() {
+        return userShippingCountry;
+    }
+
+    public void setUserShippingCountry(String userShippingCountry) {
+        this.userShippingCountry = userShippingCountry;
+    }
+
+    public String getUserShippingZipcode() {
+        return userShippingZipcode;
+    }
+
+    public void setUserShippingZipcode(String userShippingZipcode) {
+        this.userShippingZipcode = userShippingZipcode;
+    }
+
+    public boolean isDefaultShipping() {
+        return defaultShipping;
+    }
+
+    public void setDefaultShipping(boolean defaultShipping) {
+        this.defaultShipping = defaultShipping;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Order> getUsedByOrderList() {
+        return usedByOrderList;
+    }
+
+    public void setUsedByOrderList(List<Order> usedByOrderList) {
+        this.usedByOrderList = usedByOrderList;
+    }
+}
